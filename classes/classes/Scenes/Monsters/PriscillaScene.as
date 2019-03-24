@@ -1068,4 +1068,3 @@ package classes.Scenes.Monsters
 		}
 	}
 }
-
