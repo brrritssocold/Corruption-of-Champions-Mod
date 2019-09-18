@@ -113,6 +113,7 @@ package classes.Items
 //		GROWERS/SHRINKERS
 		public const REDUCTO:Consumable = new Reducto();
 		public const GROPLUS:Consumable = new GroPlus();
+		public const GIRTHOP:Consumable = new GirthoPlus();
 //		MAGIC BOOKS
 		public const B__BOOK:Consumable = new BlackSpellBook();
 		public const W__BOOK:Consumable = new WhiteSpellBook();
@@ -173,6 +174,7 @@ package classes.Items
 		public const MOUSECO:Consumable = new MouseCocoa();
 		public const MINOBLO:Consumable = new MinotaurBlood();
 		public const MYSTJWL:Consumable = new FoxJewel(FoxJewel.MYSTIC);
+		public const NDRSOIL:Consumable = new SnakeOil(SnakeOil.NAGADRESS);
 		public const OCULUMA:Consumable = new OculumArachnae();
 		public const P_LBOVA:Consumable = new LaBova(LaBova.PURIFIED);
 		public const PIGTRUF:Consumable = new PigTruffle(false);
