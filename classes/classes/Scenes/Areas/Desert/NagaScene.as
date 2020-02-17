@@ -760,7 +760,7 @@ public function nagaPlayerConstrict():void {
 		clearOutput();
 		outputText("You launch yourself at " + monster.a + monster.short + ", but with multiple enemies, wrapping one up would leave you completely open to attack.  You hastily slither backwards before you expose yourself to danger.");
 		outputText("\n\n");
-		monster.doAI();
+		getGame.combat.enemyTurn;
 		return;
 	}
 	if (monster.short == "pod") {
@@ -776,7 +776,7 @@ public function nagaPlayerConstrict():void {
 	if (monster.hasStatusEffect(StatusEffects.Concentration)) {
 		clearOutput();
 		outputText("Amily easily glides around your attack thanks to her complete concentration on your movements.");
-		monster.doAI();
+		getGame.combat.enemyTurn;
 		return;
 	}
 	//WRAP IT UPPP
@@ -801,7 +801,7 @@ public function nagaPlayerConstrict():void {
 		}
 	}
 	outputText("\n\n");
-	monster.doAI();
+	getGame.combat.enemyTurn;
 }
 
 public function naggaSqueeze():void {
@@ -826,7 +826,7 @@ public function naggaSqueeze():void {
 		return;
 	}
 	outputText("\n\n");
-	monster.doAI();
+	getGame.combat.enemyTurn;
 }
 //Tease
 public function naggaTease():void {
@@ -950,7 +950,7 @@ public function naggaTease():void {
 			return;
 		}
 	}
-	monster.doAI();
+	getGame.combat.enemyTurn;
 }
 
 public function nagaLeggoMyEggo():void {
@@ -958,7 +958,7 @@ public function nagaLeggoMyEggo():void {
 	outputText("You release " + monster.a + monster.short + " from " + monster.pronoun3 + " bonds, and " + monster.pronoun1 + " drops to the ground, catching " + monster.pronoun3 + " breath before " + monster.pronoun1 + " stands back up, apparently prepared to fight some more.");
 	outputText("\n\n");
 	monster.removeStatusEffect(StatusEffects.Constricted);
-	monster.doAI();
+	getGame.combat.enemyTurn;
 }
 
 

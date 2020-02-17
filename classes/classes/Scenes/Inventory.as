@@ -145,7 +145,7 @@ package classes.Scenes
 			}
 			if (getGame().inCombat && player.hasStatusEffect(StatusEffects.Sealed) && player.statusEffectv1(StatusEffects.Sealed) == 3) {
 				outputText("\nYou reach for your items, but you just can't get your pouches open.  <b>Your ability to use items was sealed, and now you've wasted a chance to attack!</b>\n\n");
-				monster.doAI();
+				getGame.combat.enemyTurn;
 				return;
 			}
 			if (flags[kFLAGS.DELETE_ITEMS] > 0) outputText("\nWhich item will you discard?");
@@ -293,7 +293,7 @@ package classes.Scenes
 				}
 			}
 			if (getGame().inCombat) {
-				monster.doAI();
+				getGame.combat.enemyTurn;
 				return;
 			}
 			if (showNext)
@@ -424,7 +424,7 @@ package classes.Scenes
 		private function inventoryCombatHandler():void {
 			if (!combat.combatRoundOver()) { //Check if the battle is over.
 				outputText("\n\n");
-				monster.doAI();
+				getGame().combat.enemyTurn();
 			}
 		}
 		
