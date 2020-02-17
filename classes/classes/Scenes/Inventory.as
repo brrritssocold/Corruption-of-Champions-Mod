@@ -145,7 +145,7 @@ package classes.Scenes
 			}
 			if (getGame().inCombat && player.hasStatusEffect(StatusEffects.Sealed) && player.statusEffectv1(StatusEffects.Sealed) == 3) {
 				outputText("\nYou reach for your items, but you just can't get your pouches open.  <b>Your ability to use items was sealed, and now you've wasted a chance to attack!</b>\n\n");
-				getGame.combat.enemyTurn;
+				getGame().combat.enemyTurn();
 				return;
 			}
 			if (flags[kFLAGS.DELETE_ITEMS] > 0) outputText("\nWhich item will you discard?");
@@ -293,7 +293,7 @@ package classes.Scenes
 				}
 			}
 			if (getGame().inCombat) {
-				getGame.combat.enemyTurn;
+				getGame().combat.enemyTurn();
 				return;
 			}
 			if (showNext)

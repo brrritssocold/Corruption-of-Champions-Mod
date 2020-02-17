@@ -305,7 +305,7 @@ package classes.Scenes.NPCs
 				outputText("Your reply is blotted out by the thundering of her hooves as she lowers her shield and charges.\n\n");
 				startCombat(new Isabella());
 				if (!isabellaFollower()) isabellaFollowerScene.isabellaAffection(-2);
-				getGame.combat.enemyTurn;
+				getGame().combat.enemyTurn();
 			} 
 			//(int below 50)
 			else if (player.inte < 50) {

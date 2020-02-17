@@ -1081,7 +1081,7 @@ public function urtaSpecials():void {
 	if (getGame().inCombat && player.hasStatusEffect(StatusEffects.Sealed) && player.statusEffectv2(StatusEffects.Sealed) == 5) {
 		clearOutput();
 		outputText("You try to ready a special attack, but wind up stumbling dizzily instead.  <b>Your ability to use physical special attacks was sealed, and now you've wasted a chance to attack!</b>\n\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 		return;
 	}
 	menu();
@@ -1099,7 +1099,7 @@ private function urtaMetabolize():void {
 	var damage:int = player.takeDamage(Math.round(player.maxHP()/10));
 	outputText("You work your body as hard as you can, restoring your fatigue at the cost of health. (" + damage + ")\nRestored 20 fatigue!\n\n");
 	player.changeFatigue(-20);
-	getGame.combat.enemyTurn;
+	getGame().combat.enemyTurn();
 }
 
 private function urtaSecondWind():void {
@@ -1117,7 +1117,7 @@ private function urtaSecondWind():void {
 	player.changeFatigue(-50);
 	dynStats("lus", -50);
 	outputText("Closing your eyes for a moment, you focus all of your willpower on pushing yourself to your absolute limits, forcing your lusts down and drawing on reserves of energy you didn't know you had!\n\n");
-	getGame.combat.enemyTurn;
+	getGame().combat.enemyTurn();
 }
 
 //Combo: 3x attack, higher miss chance, guaranteed hit vs blind
@@ -1159,7 +1159,7 @@ private function urtaComboAttack():void {
 		}
 		else {
 			outputText("\n");
-			getGame.combat.enemyTurn;
+			getGame().combat.enemyTurn();
 			return;
 		}
 	}
@@ -1231,7 +1231,7 @@ private function urtaComboAttack():void {
 			return;
 		}
 		outputText("\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 	}
 	else {
 		if (monster.HP <= 0) doNext(combat.endHpVictory);
@@ -1259,7 +1259,7 @@ private function urtaDirtKick():void {
 	//Dodged!
 	if (rand(20) + 1 + monster.spe/20 > 15 + player.spe/20) {
 		outputText(monster.mf("He","She") + " manages to shield " + monster.mf("his","her") + " eyes.  Damn!\n\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 		return;
 	}
 	else if (monster.hasStatusEffect(StatusEffects.Blind)) {
@@ -1269,7 +1269,7 @@ private function urtaDirtKick():void {
 		outputText(monster.mf("He","She") + "'s blinded!\n\n");
 		monster.createStatusEffect(StatusEffects.Blind,2 + rand(3),0,0,0);
 	}
-	getGame.combat.enemyTurn;
+	getGame().combat.enemyTurn();
 }
 
 //SideWinder: 70% damage + stun chance
@@ -1296,7 +1296,7 @@ private function urtaSidewinder():void {
 		if (monster.spe - player.spe >= 8 && monster.spe-player.spe < 20) outputText(monster.capitalA + monster.short + " dodges your attack with superior quickness!");
 		if (monster.spe - player.spe >= 20) outputText(monster.capitalA + monster.short + " deftly avoids your slow attack.");
 		outputText("\n\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 		return;
 	}
 	//Determine damage
@@ -1378,7 +1378,7 @@ private function urtaSidewinder():void {
 			return;
 		}
 		outputText("\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 	}
 	else {
 		if (monster.HP <= 0) doNext(combat.endHpVictory);
@@ -1401,7 +1401,7 @@ private function urtaVaultAttack():void {
 	player.changeFatigue(20);
 	if (player.hasStatusEffect(StatusEffects.Sealed) && player.statusEffectv2(StatusEffects.Sealed) == 0) {
 		outputText("You attempt to attack, but at the last moment your body wrenches away, preventing you from even coming close to landing a blow!  The seals have made normal attack impossible!  Maybe you could try something else?\n\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 		return;
 	}
 	//Blind
@@ -1421,7 +1421,7 @@ private function urtaVaultAttack():void {
 			return;
 		}
 		else outputText("\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 		return;
 	}
 	//Determine damage
@@ -1494,7 +1494,7 @@ private function urtaVaultAttack():void {
 			return;
 		}
 		outputText("\n");
-		getGame.combat.enemyTurn;
+		getGame().combat.enemyTurn();
 	}
 	else {
 		if (monster.HP <= 0) doNext(combat.endHpVictory);
