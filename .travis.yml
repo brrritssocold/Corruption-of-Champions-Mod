@@ -29,6 +29,7 @@ script:
   # alternative to travis_wait from https://github.com/travis-ci/travis-ci/issues/4190#issuecomment-353342526
   # Output something every 10 minutes or Travis kills the job
   - while sleep 9m; do echo "=====[ $SECONDS seconds still running ]====="; done &
+  # this runs the actual build
   - ant test-$BUILD
   # Killing background sleep loop
   - kill %1
