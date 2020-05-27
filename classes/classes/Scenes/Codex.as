@@ -40,7 +40,7 @@ package classes.Scenes
 		
 		public function Codex() {}
 		
-		private const TOTAL_ENTRIES:int   = 27;
+		private const TOTAL_ENTRIES:int   = 26;
 		
 		private const PAGE_RACES_1:int    =  0;
 		private const PAGE_RACES_2:int    =  1;

@@ -134,8 +134,8 @@ package classes.Scenes.Areas.Desert
 			//[Keep Hidden]
 			//[Play Hero]
 			menu();
-			addButton(0, "Play Hero", playHero);
-			addButton(1, "Keep Hidden", keepHidden);
+			addButton(0, "Play Hero", playHero).hint("Will you play the good samaritan and step in?");
+			addButton(1, "Keep Hidden", keepHidden).hint("It seems too dangerous, stay hidden. Leave the ant-girl to her fate.");
 		}
 
 //►[Keep Hidden]
@@ -322,7 +322,7 @@ package classes.Scenes.Areas.Desert
 			}
 			//[Fight] [Leave]
 			menu();
-			addButton(0, "Fight", antColiseumFight);
+			addButton(0, "Fight", antColiseumFight).hint("Challenge an opponent in the colosseum. Good luck!");
 			addButton(14, "Leave", leaveAntColony);
 		}
 
@@ -504,11 +504,37 @@ package classes.Scenes.Areas.Desert
 			outputText("\n\nAfter a few hours daydreaming of what Chylla might task you with, a small ant brings you a small clay cup filled with the clear liquid that the vials were filled with. Wordlessly, he extends it to you. Accepting the cup you thank him with a pat on the head as he skitters off. Drinking deep, the liquid glides down your throat. A sudden feeling of safety and warmth covers you as the liquid hits your stomach. After you've completely drained the contents of the cup you feel a strange thankfulness for everything you've been given, even if it's only a small room. It's the best room you've ever had and you never want to leave it.");
 			outputText("\n\nDays past of the same routine. An ant comes, gives you a cup and sometimes some food then disappears back into the tunnels...");
 
+			if (player.inte >= 60) {
+				outputText("\n\nYou could attempt to escape the colony and make your way back to the surface.");
+				menu();
+				addButton(0, "Escape", attemptEscapeAnts).hint("Make an attempt to escape the ant colony and never return. You've got the portal to worry about!");
+				addButton(1, "Stay", antastrophyBadEndEpilogue).hint("Stay and accept your fate as you spend the rest of your life confined to the ant colony.");
+				return;
+			}
+			else {
+				antastrophyBadEndEpilogue();
+			}
+		}
+		private function antastrophyBadEndEpilogue():void
+		{
 			outputText("\n\n<b>Epilogue</b>\n");
 			outputText("You live out the rest of your days in blissful ignorance, helping the colony in any way you can. Mostly you're used as an experimental sex toy. They force you to drink an uncountable number of different potions and elixirs. Eventually you start to beg for more as your mind and body crave the sexual liquids. Oftentimes Chylla even puts you in the arena, sometimes to pleasure yourself in front of the whole colony or calling upon you to service as many males as you can please at once. Sometimes you're a male, sometimes you're a female, and sometimes both. Your mind becomes completely consumed with pleasing the colony in any way you can. You never get to see the outside world or Phylla again, but you don't care. You're busy pleasing every cock placed in front of you. As long as you're helping the colony grow and become strong, nothing else matters to you.");
 			getGame().gameOver();
 		}
 
+		private function attemptEscapeAnts():void
+		{
+			clearOutput();
+			credits.modContent = true;
+			outputText("Luckily, over the days spent in the room, you've carefully laid out how you'll escape the colony. You've observed the guard shifts and memorized the mazes of tunnels and it's time to put your knowledge into gear.");
+			outputText("\n\nPeeking your head out of your room, you observe that no guards are present, they must be probably off eating at the mess hall. Now's your opportunity to escape! You set your [foot] out of your room and stealthily navigate across the halls, observing for any possible guards while you allow your memory to serve you. It must be left, then forward, left, right, forward. The objects, layout, and the points of interest surely help you in navigating the many tunnels.");
+			outputText("\n\nDespite the confusing, maze-like nature of the tunnels, you finally reach the surface. With no guards in sight, you make your hasty dash! The ants will certainly never find you. You don't think the ants will be too impressed if you ever return however...");
+			flags[kFLAGS.ANTS_PC_FAILED_PHYLLA] = 1;
+			time.days += 5;
+			doNext(camp.returnToCampUseOneHour);
+			
+		}
+		
 //Good End
 //Good End / Waifu Content
 		private function antGirlGoodEnd():void
@@ -530,10 +556,10 @@ package classes.Scenes.Areas.Desert
 			//Use Penis - Male Continuation
 			//Use Vagina - Female Continuation
 			menu();
-			if (player.hasCock()) addButton(0, "Use Penis", gigititigitigitigitigityAntGirl);
-			if (player.hasVagina()) addButton(1, "Use Vagina", femalePhyllaFirstFuckGooooo);
-			addButton(3, "Not Now", declineAntSexForNow);
-			addButton(4, "Reject", rejectAntSex);
+			if (player.hasCock()) addButton(0, "Use Penis", gigititigitigitigitigityAntGirl).hint("Use your dick to knock up the ant-girl.");
+			if (player.hasVagina()) addButton(1, "Use Vagina", femalePhyllaFirstFuckGooooo).hint("Get intimate with the ant-girl with your pussy.");
+			addButton(3, "Not Now", declineAntSexForNow).hint("You're not ready for this. Put off the sex for now.");
+			addButton(4, "Reject", rejectAntSex).hint("Flatly reject the ant-girl? You'll certainly break her heart.");
 		}
 		
 		//Put off the sex for now.
@@ -1019,8 +1045,8 @@ package classes.Scenes.Areas.Desert
 			outputText("\n\nYou look over at Phylla, noticing that she's completely passed out in a very cute fetal position. You can see the indent you were making next to her before you stood up.  It's odd, but you can still feel that \"link\" you two shared; her thoughts and emotions like the whisper of wind around you. Just looking at her sleeping seems to make your worries melt away.  Your lack of presence in bed causes her to stir and wake, and she rubs her eyes in an effort to fully drag herself into consciousness. You can tell from her body language that she's experiencing the same withdrawals you are.  As you start to gather your things, your sleepy lover groggily says, \"<i>I can join you at camp if you want, I don't take up much space.  Above ground!  I mean, I'll be underground, I mean, I won't bother anyone.  I-I'll be good...</i>\"");
 			//[Come to Camp] [Stay Here]
 			menu();
-			addButton(0, "Come2Camp", getAntWaifuYoShit);
-			addButton(1, "Stay Here", tellPhyllaToStayTheFuckAtHomeThatCunt);
+			addButton(0, "Come2Camp", getAntWaifuYoShit).hint("Invite Phylla to stay at your camp.", "Come to Camp");
+			addButton(1, "Stay Here", tellPhyllaToStayTheFuckAtHomeThatCunt).hint("No, Phylla should stay with her mother.");
 		}
 
 //[Come to Camp]
@@ -1061,8 +1087,8 @@ package classes.Scenes.Areas.Desert
 			//[Come to Camp] [Stay Here]
 			//(Note: There's no content here for her staying at her mother's Colony. She's meant to be a Waifu.)
 			menu();
-			addButton(0, "Come2Camp", getAntWaifuYoShit);
-			addButton(1, "Stay Here", tellPhyllaToStayTheFuckAtHomeThatCunt);
+			addButton(0, "Come2Camp", getAntWaifuYoShit).hint("Invite Phylla to stay at your camp.", "Come to Camp");
+			addButton(1, "Stay Here", tellPhyllaToStayTheFuckAtHomeThatCunt).hint("No, Phylla should stay with her mother.");
 		}
 
 		// Only used after she becomes a follower
@@ -1139,16 +1165,16 @@ package classes.Scenes.Areas.Desert
 			}
 			//[Talk] [Sex] [Lay Eggs / Don't Lay Eggs] [Children] [Appearance] [Gems] [Stones]
 			menu();
-			addButton(0, "Talk", phyllaTalkChoices);
-			if (player.lust >= 33) addButton(1, "Sex", phyllaSexMenu);
+			addButton(0, "Talk", phyllaTalkChoices).hint("Strike up a conversation with Phylla.");
+			if (player.lust >= 33) addButton(1, "Sex", phyllaSexMenu).hint("See if Phylla is willing to have sex with you.");
 			else addDisabledButton(1, "Sex", "You are not aroused enough.");
-			if (flags[kFLAGS.PHYLLA_EGG_LAYING] == 0) addButton(2, "Lay Eggs", phyllaLaysEggsToggle);
-			else addButton(2, "No Eggs", phyllaLaysEggsToggle);
-			if (flags[kFLAGS.ANT_KIDS] > 0) addButton(3, "Children", phyllasKidsChildren);
+			if (flags[kFLAGS.PHYLLA_EGG_LAYING] == 0) addButton(2, "Lay Eggs", phyllaLaysEggsToggle).hint("Tell Phylla to start laying eggs.");
+			else addButton(2, "No Eggs", phyllaLaysEggsToggle).hint("Tell Phylla to stop laying eggs.");
+			if (flags[kFLAGS.ANT_KIDS] > 0) addButton(3, "Children", phyllasKidsChildren).hint("Ask Phylla about her children.");
 			else addDisabledButton(3, "Children", "You have no children yet.");
-			addButton(4, "Appearance", phyllaPearance);
-			addButton(5, "Find Gems", phyllaDigsForGems);
-			addButton(6, "Take Stones", phyllaStones);
+			addButton(4, "Appearance", phyllaPearance).hint("Get a good look at your ant-girl's appearance.");
+			addButton(5, "Find Gems", phyllaDigsForGems).hint("Ask Phylla if she has found any gems you can have.");
+			addButton(6, "Take Stones", phyllaStones).hint("Ask Phylla if she has any stones you can use for construction-related projects.");
 			addButton(14, "Back", camp.campLoversMenu);
 
 			flags[kFLAGS.PHYLLA_CAMP_VISITS]++;
@@ -1166,38 +1192,38 @@ package classes.Scenes.Areas.Desert
 			addDisabledButton(5, "Oviposit", "This scene requires you to have spider ovipositor.");
 			
 			if (player.hasCock()) {
-				addButton(0, "Get BJ", phyllaBeeeJays);
+				addButton(0, "Get BJ", phyllaBeeeJays).hint("Have Phylla put her mouth to a good use, yeah?", "Get Blowjob");
 				//\"<i>Use Dick</i>\"
-				addButton(1, "Fuck Her", dickPhylla);
+				addButton(1, "Fuck Her", dickPhylla).hint("Put your dick inside that ant-girl cooch and stuff her.");
 				//[While Giving Birth]
 				//(Note: The above option will only be available if Phylla is 'Laying Eggs.')
 				//While Giving Birth (Male) - Written
-				if (flags[kFLAGS.PHYLLA_EGG_LAYING] > 0 && flags[kFLAGS.ANT_KIDS] >= 10) addButton(1, "Fuck Her", dudesFuckEggLayingBitches);
-				if (flags[kFLAGS.ANT_KIDS] > 10 && player.isCorruptEnough(75)) addButton(3, "Orgy (Male)", orgyWithDatColonyCorruptDudes);
+				if (flags[kFLAGS.PHYLLA_EGG_LAYING] > 0 && flags[kFLAGS.ANT_KIDS] >= 10) addButton(1, "Fuck Her", dudesFuckEggLayingBitches).hint("Put your dick inside that ant-girl cooch and stuff her.");
+				if (flags[kFLAGS.ANT_KIDS] > 10 && player.isCorruptEnough(75)) addButton(3, "Orgy (Male)", orgyWithDatColonyCorruptDudes).hint("Make use of your corruption and engage in a perverted orgy.");
 			}
 			//Straight Sex (Lesbian/Fisting) - Written
 			if (player.hasVagina()) {
-				addButton(2, "Lesbian Sex", lesbianFisting);
+				addButton(2, "Lesbian Sex", lesbianFisting).hint("Get on a girl-on-girl action with Phylla.");
 				//While Giving Birth (Female) - Written
-				if (flags[kFLAGS.PHYLLA_EGG_LAYING] > 0 && flags[kFLAGS.ANT_KIDS] >= 10) addButton(2, "Lesbian Sex", birfingSexWithAntsForDasLadies);
+				if (flags[kFLAGS.PHYLLA_EGG_LAYING] > 0 && flags[kFLAGS.ANT_KIDS] >= 10) addButton(2, "Lesbian Sex", birfingSexWithAntsForDasLadies).hint("Get on a girl-on-girl action with Phylla.");
 				//Orgy w/ Colony (Female)
 				//You tell Phylla you're interested in 'inspecting' your children.
-				if (flags[kFLAGS.ANT_KIDS] > 10 && player.isCorruptEnough(75)) addButton(4, "Orgy (Female)", antColonyOrgy4Ladies);
+				if (flags[kFLAGS.ANT_KIDS] > 10 && player.isCorruptEnough(75)) addButton(4, "Orgy (Female)", antColonyOrgy4Ladies).hint("Make use of your corruption and engage in a perverted orgy.");
 			}
 			//Drider/Bee impregnation scene for Phylla (universal unless otherwise specified, which will include varied intros and stuff.
 			//Sex > [Egg Phylla]
-			if (player.canOvipositSpider()) addButton(5, "Oviposit", eggDatBitch);
+			if (player.canOvipositSpider()) addButton(5, "Oviposit", eggDatBitch).hint("Egg the ant-girl with your ovipositor.", "Oviposition");
 			addButton(14, "Back", introductionToPhyllaFollower);
 		}
 
 		private function phyllaTalkChoices():void
 		{
 			menu();
-			addButton(0, "History", talkAboutAntHistory);
+			addButton(0, "History", talkAboutAntHistory).hint("Ask the ant-girl about the history. How did her species come to be and what happened to her species?");
 			//(Ant Morph Mating Ritual / Inherited Knowledge)
-			addButton(1, "Mating", talkAboutAntMatingAndRituals);
+			addButton(1, "Mating", talkAboutAntMatingAndRituals).hint("Ask the ant-girl about the mating process and the rituals involved.");
 			//(Phylla's Life Past & Future)
-			addButton(2, "Her Life", phyllasLifePastAndFuture);
+			addButton(2, "Her Life", phyllasLifePastAndFuture).hint("Ask Phylla about her past, her life.");
 			addButton(14, "Back", introductionToPhyllaFollower);
 		}
 
@@ -1674,8 +1700,8 @@ package classes.Scenes.Areas.Desert
 			player.orgasm('Dick');
 			//[Swallow it up]   [Spit it out]
 			menu();
-			addButton(0, "Swallow It", swallowDatJismPhylla);
-			addButton(1, "SpitItOut", spitItOutYouCunt);
+			addButton(0, "Swallow It", swallowDatJismPhylla).hint("Tell Phylla to swallow your delicious load.");
+			addButton(1, "Spit It Out", spitItOutYouCunt).hint("Tell Phylla to spit your load out.", "Spit It Out");
 		}
 
 //[Swallow It]
@@ -2465,8 +2491,8 @@ package classes.Scenes.Areas.Desert
 				//[Yay!] Transition to - LICK THAT!
 				//[On your own] Transition to - DON'T LICK THAT!
 				menu();
-				addButton(0, "Lick That", lickThatAntButt);
-				addButton(1, "Don't Lick", dontLickAntButt);
+				addButton(0, "Lick That", lickThatAntButt).hint("Offer Phylla some help by licking her abdomen.");
+				addButton(1, "Don't Lick", dontLickAntButt).hint("You're not quite comfortable with licking that slit. Offer a gentle massage instead.");
 			}
 			//(Stop Laying Eggs)
 			else {
@@ -2591,8 +2617,8 @@ package classes.Scenes.Areas.Desert
 					outputText("\n\nGods DAMN!  You want to knock her up so bad!  Your Drider urges to mount her are in danger of overwhelming you and reducing you to a brainless breeder... maybe that isn't so bad after all, but you need to make a decision now before you're consumed by lust!");
 					menu();
 					//[Leave her to recover] - Let Phylla Recover  [Mount] - Mount Phylla
-					addButton(0, "LetHerRecover", letPhyllaRecover);
-					addButton(1, "Mount", driderDoublePhllaMount);
+					addButton(0, "LetHerRecover", letPhyllaRecover).hint("Phylla deserves some rest after the ordeal.", "Let Her Recover");
+					addButton(1, "Mount", driderDoublePhllaMount).hint("She definitely can take more. Mount her and put more of your eggs into her!");
 				}
 				else {
 					menu();
