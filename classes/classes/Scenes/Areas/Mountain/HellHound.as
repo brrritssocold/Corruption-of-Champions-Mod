@@ -18,7 +18,7 @@ package classes.Scenes.Areas.Mountain
 				outputText("You reach inside yourself to breathe flames, but as you ready to release a torrent of fire, it backs up in your throat, blocked by the webbing across your mouth.  It causes you to cry out as the sudden, heated force explodes in your own throat.\n");
 				changeFatigue(10);
 				takeDamage(10+rand(20));
-				monster.doAI();
+				getGame().combat.enemyTurn();
 				return;
 			}*/
 			if(player.findPerk(PerkLib.Evade) >= 0 && player.spe >= 35 && rand(3) != 0) {
