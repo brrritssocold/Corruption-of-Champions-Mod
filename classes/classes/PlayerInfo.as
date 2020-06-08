@@ -10,6 +10,7 @@ package classes
 	import com.bit101.components.ComboBox;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import flash.text.TextFormat;
 	
 	/**
 	 * The new home of Stats and Perks
@@ -789,6 +790,8 @@ package classes
 		public function levelUpGo():void {
 			clearOutput();
 			hideMenus();
+			var tf:TextFormat = (levelUpPane.getElementByName("LevelMessage") as TextField).getTextFormat();
+			tf.color = mainViewManager.isDarkText() ? 0xc0c0c0 : 0;
 			//Level up
 			if (player.XP >= player.requiredXP() && player.level < getGame().levelCap) {
 				player.XP -= player.requiredXP();
@@ -797,6 +800,7 @@ package classes
 				player.statPoints += 5;
 				if (player.level % 2 == 0) player.ascensionPerkPoints++;
 				(levelUpPane.getElementByName("LevelMessage") as TextField).htmlText = "You are now level " + player.level + "!";
+				(levelUpPane.getElementByName("LevelMessage") as TextField).setTextFormat(tf);
 				levelUpPane.getElementByName("LevelMessage").visible = true;
 				attributeMenu();
 			}
@@ -820,7 +824,10 @@ package classes
 			clearOutput();
 			mainView.mainText.visible = false;
 			levelUpPane.show();
+			var tf:TextFormat = (levelUpPane.getElementByName("AttributeMessage") as TextField).getTextFormat();
+			tf.color = mainViewManager.isDarkText() ? 0xc0c0c0 : 0;
 			(levelUpPane.getElementByName("AttributeMessage") as TextField).htmlText = "You have <b>" + (player.statPoints > 0 ? player.statPoints : "no") + "</b> point" + (player.statPoints == 1 ? "" : "s") + " left to spend.";
+			(levelUpPane.getElementByName("AttributeMessage") as TextField).setTextFormat(tf);
 			//Those arrays work in parallel ways.
 			var attributes:Array = [player.str, player.tou, player.spe, player.inte];
 			var attributeTemps:Array = [player.tempStr, player.tempTou, player.tempSpe, player.tempInt];

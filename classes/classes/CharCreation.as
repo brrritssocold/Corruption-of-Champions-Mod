@@ -1157,7 +1157,7 @@ package classes {
 			flags[kFLAGS.GRIMDARK_MODE] = 1;
 			flags[kFLAGS.HUNGER_ENABLED] = 1;
 			flags[kFLAGS.GAME_DIFFICULTY] = 3;
-			if (flags[kFLAGS.GRIMDARK_BACKGROUND_UNLOCKED] === 0) flags[kFLAGS.BACKGROUND_STYLE] = 9;
+			flags[kFLAGS.BACKGROUND_STYLE] = 5;
 			player.hunger = 80;
 			doNext(startTheGame);
 		}
@@ -1167,18 +1167,18 @@ package classes {
 			outputText(images.showImage("event-creation"));
 			outputText("Choose a game mode.\n\n");
 			outputText("<b>Survival:</b> ");
-			if (flags[kFLAGS.HUNGER_ENABLED] === 0) outputText("Normal Mode. You don't have to eat.\n");
+			if (flags[kFLAGS.HUNGER_ENABLED] === 0) outputText("Normal Mode. You don't have to eat. This is the classic gameplay.\n");
 			if (flags[kFLAGS.HUNGER_ENABLED] === 0.5) outputText("Survival Mode. You get hungry from time to time.\n");
 			if (flags[kFLAGS.HUNGER_ENABLED] === 1) outputText("Realistic Mode. You get hungry from time to time and cum production is capped. In addition, it's a bad idea to have oversized parts.\n");
 			outputText("<b>Hardcore:</b> ");
 			if (flags[kFLAGS.HARDCORE_MODE] === 0) outputText("Normal Mode. You choose when you want to save and load.\n");
-			if (flags[kFLAGS.HARDCORE_MODE] === 1) outputText("Hardcore Mode. The game forces save and if you get a Bad End, your save file is deleted. Disables difficulty selection, debug mode, Low Standarts and Hyper Happy mode once the game is started. For the veteran CoC players only.\n");
+			if (flags[kFLAGS.HARDCORE_MODE] === 1) outputText("Hardcore Mode. The game forces save and if you get a Bad End, your save file is deleted. Disables difficulty selection, debug mode, Low Standards and Hyper Happy mode once the game is started. For the veteran CoC players only.\n");
 			outputText("<b>Difficulty:</b> ");
 			if (flags[kFLAGS.GAME_DIFFICULTY] === 0) outputText("Normal Mode. No stats changes. Game is nice and simple.\n");
-			if (flags[kFLAGS.GAME_DIFFICULTY] === 1) outputText("Hard Mode. Enemies have would have extra 25% HP and 15% damage.\n");
+			if (flags[kFLAGS.GAME_DIFFICULTY] === 1) outputText("Hard Mode. Enemies would have extra 25% HP and 15% damage.\n");
 			if (flags[kFLAGS.GAME_DIFFICULTY] === 2) outputText("Nightmare Mode. Enemies would have extra 50% HP and 30% damage.\n");
 			if (flags[kFLAGS.GAME_DIFFICULTY] === 3) outputText("Extreme Mode. Enemies would have extra 100% HP and 50% damage.\n");
-			if (debug) outputText("<b>Grimdark mode:</b> (In dev) In the grimdark future, there are only rape and corruptions. Lots of things are changed and Lethice has sent out her minions to wall the borders and put up a lot of puzzles. Can you defeat her in this mode in as few bad ends as possible?\n");
+			if (debug) outputText("<b>Grimdark mode:</b> (In dev) In the grimdark future, there are only corruption and rape. Lots of things are changed and Lethice has sent out her minions to wall the borders and put up a lot of puzzles. Can you defeat her in this mode in as few bad ends as possible?\n");
 			menu();
 			addButton(0, "Survival", chooseModeSurvival);
 			addButton(1, "Hardcore", chooseModeHardcore);

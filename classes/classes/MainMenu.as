@@ -176,6 +176,7 @@ package classes
 				var fmt:TextFormat = new TextFormat();
 				fmt.color = mainViewManager.isDarkText() ? 0xc0c0c0 : 0;
 				var tf:TextField = _mainMenu.getElementByName(elements[i]) as TextField;
+				tf.defaultTextFormat = fmt;
 				tf.setTextFormat(fmt);
 			}
 			

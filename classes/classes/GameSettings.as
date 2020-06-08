@@ -337,8 +337,8 @@ package classes
 			addButton(2, "Marble", setMainBackground, 2);
 			addButton(3, "Obsidian", setMainBackground, 3);
 			addButton(4, "Night Mode", setMainBackground, 4, null, null, "Good if you're playing at night to make the game easier on your eyes.");
-			if (flags[kFLAGS.GRIMDARK_BACKGROUND_UNLOCKED] > 0) addButton(5, "Grimdark", setMainBackground, 9);
-			else addButtonDisabled(5, "Grimdark", "Defeat Lethice once in Grimdark mode to unlock this background!");
+			if (flags[kFLAGS.GRIMDARK_BACKGROUND_UNLOCKED] > 0) addButton(5, "Grimdark", setMainBackground, 5);
+			//else addButtonDisabled(5, "Grimdark", "Defeat Lethice once in Grimdark mode to unlock this background!");
 			addButton(14, "Back", displaySettingPane, lastDisplayedPane);
 		}
 		public function setMainBackground(type:int):void {

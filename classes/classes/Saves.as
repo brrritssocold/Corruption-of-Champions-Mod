@@ -750,7 +750,7 @@ public function loadPermObject():void {
 		}
 		//Grimdark
 		if (flags[kFLAGS.GRIMDARK_MODE] >= 1 && saveFile.data.flags[kFLAGS.GRIMDARK_BACKGROUND_UNLOCKED] == 0) {
-			flags[kFLAGS.BACKGROUND_STYLE] = 9;
+			flags[kFLAGS.BACKGROUND_STYLE] = 5;
 		}
 		//achievements, will check if achievement exists.
 		if (saveFile.data.achievements) {
@@ -2421,7 +2421,7 @@ public function unFuckSave():void
 	//Set to Grimdark if doing kaizo unless locked
 	if (flags[kFLAGS.GRIMDARK_MODE] > 0) {
 		if (flags[kFLAGS.GRIMDARK_BACKGROUND_UNLOCKED] == 0) {
-			flags[kFLAGS.BACKGROUND_STYLE] = 9;
+			flags[kFLAGS.BACKGROUND_STYLE] = 5;
 		}
 		getGame().inRoomedDungeon = true;
 	}
