@@ -1191,28 +1191,28 @@ private function talkClothes():void {
 		addDisabledButton(2, "Bodysuit");
 	}
 	if (hasClothing(KBIT_CLOTHES_B_DRESS)) {
-		addButton(2, "Long Dress", talkClothesDress);
+		addButton(3, "Long Dress", talkClothesDress);
 	} else {
 		outputText("A ballroom dress would be a wonderful gift for your herm lover.  You suspect that Kath, with her quite girly outlook would cherish such feminine clothing.\n\n");
-		addDisabledButton(2, "Long Dress");
+		addDisabledButton(3, "Long Dress");
 	}
 	if (hasClothing(KBIT_CLOTHES_SS_ROBE)) {
-		addButton(3, "Silk Robe", talkClothesSSRobe);
+		addButton(4, "Silk Robe", talkClothesSSRobe);
 	} else {
 		outputText("A strange thought crosses your mind: What if you got a really fine silk robe for her to wear?  Perhaps even spider silk?  The soft, lustrous fabric " + catGirl("sliding over her skin would drive her wild", "would compliment her fur nicely") + ".\n\n");
-		addDisabledButton(3, "Silk Robe");
+		addDisabledButton(4, "Silk Robe");
 	}
 	if (hasClothing(KBIT_CLOTHES_TUBETOP)) {
-		addButton(4, "Tube Top", talkClothesTubeTop);
+		addButton(5, "Tube Top", talkClothesTubeTop);
 	} else {
 		outputText("What Kath needs for her wardrobe is a tube top.  All right - to be honest she doesn’t need that, but you would both enjoy the result.\n\n");
-		addDisabledButton(4, "Tube Top");
+		addDisabledButton(5, "Tube Top");
 	}
 	if (hasClothing(KBIT_CLOTHES_NURSECL)) {
-		addButton(5, "Nurse Outfit", talkClothesNurseOutfit);
+		addButton(6, "Nurse Outfit", talkClothesNurseOutfit);
 	} else {
 		outputText((flags[kFLAGS.GIVEN_AMILY_NURSE_OUTFIT] > 0 ? "You remember what happened when you gave your mouse-girl one of those sexy nurse outfits" : "Out there in the wilds you’ve seen those sexy nurse outfits here and there") + ". You shiver at the thought of combining that obscene clothing with your " + catGirl("cat girl", "feline") + " lover and her sex drive.\n\n");
-		addDisabledButton(5, "Nurse Outfit");
+		addDisabledButton(6, "Nurse Outfit");
 	}
 	outputText("You decide to give Katherine a little input on her clothing choices.");
 	addButton(14, "Back", katherineMenu);
