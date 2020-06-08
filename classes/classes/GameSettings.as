@@ -463,5 +463,20 @@ package classes
 			outputText("Controls have been cleared!");
 			doNext(displayControls);
 		}
+		
+		public function initializeDefaultSettings():void {
+			//Set default gameplay.
+			flags[kFLAGS.PRISON_ENABLED] = 0;
+			//Set default UI.
+			flags[kFLAGS.USE_OLD_FONT] 0;
+			flags[kFLAGS.USE_OLD_INTERFACE] = 0;
+			flags[kFLAGS.ANIMATE_STATS_BARS] = 1;
+			flags[kFLAGS.ENEMY_STATS_BARS_ENABLED] = 1;
+			flags[kFLAGS.SHOW_SPRITES_FLAG] = 2;
+			flags[kFLAGS.IMAGEPACK_ENABLED] = 1;
+			//Set default fetishes.
+			flags[kFLAGS.ADDICTIONS_ENABLED] = 1;
+			flags[kFLAGS.WATERSPORTS_ENABLED] = 0;
+		}
 	}
 }

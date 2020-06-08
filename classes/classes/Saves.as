@@ -778,9 +778,7 @@ public function loadPermObject():void {
 		}
 	}
 	else { //Defaults certain settings for first-time startup.
-		flags[kFLAGS.IMAGEPACK_ENABLED] = 1;
-		flags[kFLAGS.SHOW_SPRITES_FLAG] = 2;
-		flags[kFLAGS.ANIMATE_STATS_BARS] = 1;
+		getGame().gameSettings.initializeDefaultSettings();
 	}
 }
 

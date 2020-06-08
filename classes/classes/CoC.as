@@ -718,6 +718,7 @@ package classes
 			stage.focus = kGAMECLASS.mainView.mainText;
 			mainView.eventTestInput.x = -10207.5;
 			mainView.eventTestInput.y = -1055.1;
+			gameSettings.initializeDefaultSettings();
 			saves.loadPermObject();
 			mainViewManager.startUpButtons();
 			preLoadInterfaces();
