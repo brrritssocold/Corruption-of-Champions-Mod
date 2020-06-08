@@ -469,8 +469,8 @@ package classes.Scenes.Seasonal {
 			outputText("\n\n\"<i>And for you, I have a very special package, just for the good boys and girls.</i>\"  His large furred hand lewdly cups over his groin, making his bulge more pronounced as he stretches the fabric of his pants.  You can see the girth of his 'candy cane' hanging limp over his heavy sack.  His eyes give you a lurid gaze, an expectant twinkle in his eyes.  \"<i>Come over and unwrap it.</i>\"  His low voice makes goosebumps crawl over your skin.");
 			//Open options Leave, Unwrap
 			menu();
-			addButton(0,"Unwrap",unwrapPolarPete);
-			addButton(4,"Leave",leaveDisFukkinPolarBear);
+			addButton(0,"Unwrap",unwrapPolarPete).hint("Unwrap what the polar bear is hiding. You suspect that this will lead to a lewd butt-stuffing moment.");
+			addButton(4,"Leave",leaveDisFukkinPolarBear).hint("No thanks, you've got better things to do.");
 		}
 		//Unwrap
 		public function unwrapPolarPete():void {
@@ -582,8 +582,8 @@ package classes.Scenes.Seasonal {
 				outputText("\n\nFinally, the head.  You make yet another small ball of tightly packed snow and place it upon the tower, and stand back to look at your creation.  You grab a couple sticks nearby and grab a piece of torn cloth from your camp, placing them all on the snowman to make arms and a scarf.  It's a pretty good piece of work.");
 				outputText("\n\nSuddenly, a naughty thought strikes you. You could probably make this snowman into a snowwoman if you wanted to.");
 				menu();
-				addButton(0,"Snowwoman",nieveSnowWoman);
-				addButton(1,"Snowman",nieveSnowMan);
+				addButton(0,"Snowwoman",nieveSnowWoman).hint("Make the snowman into a snow-woman. Add some snowy tits.");
+				addButton(1,"Snowman",nieveSnowMan).hint("Nothing beats the classic snowman. Not everyone needs to have tits!");
 				//[Snowwoman] [Snowman] 
 			}
 			//Second Step: Eyes & Mouth
@@ -593,8 +593,8 @@ package classes.Scenes.Seasonal {
 				outputText("\n\nIt still needs eyes and a mouth.  Coal is the best option, but who knows how common that is around here?  Gems, you decide, are an acceptable stand-by.  It'd probably take 9 gems to complete, two for the eyes and seven for the mouth.");
 				//[Coal (Only available if PC has coal)] [Gems]
 				menu();
-				if (player.hasItem(consumables.COAL___)) addButton(0,"Coal",nieveCoalEyes);
-				addButton(1,"Gems",nieveGemEyes);
+				if (player.hasItem(consumables.COAL___)) addButton(0,"Coal",nieveCoalEyes).hint("Use the coal for the face.");
+				addButton(1,"Gems",nieveGemEyes).hint("Use your shiny gems for the face. Nine of them will suffice.");
 				addButton(4,"Back",camp.returnToCampUseOneHour);
 			}
 			//Fourth Step: The Nose
@@ -809,20 +809,20 @@ package classes.Scenes.Seasonal {
 			outputText("What will you do with your oh-so-cool lover?");
 			if (player.lust < 33) outputText("  You aren't quite turned on enough for normal fucking.");
 			menu();
-			if (flags[kFLAGS.NIEVE_GENDER] == 2) addButton(0,"Lick Her",lickNieve);
-			if (flags[kFLAGS.NIEVE_GENDER] == 1) addButton(0,"Suck Him",suckNieveOff);
+			if (flags[kFLAGS.NIEVE_GENDER] == 2) addButton(0,"Lick Her",lickNieve).hint("Get down and give her cunt a good licking for some sweet times.");
+			if (flags[kFLAGS.NIEVE_GENDER] == 1) addButton(0,"Suck Him",suckNieveOff).hint("Get down and give him the pleasure. You'll certainly get your treat.");
 			//Fuck Her
 			//Female Nieve
 			//Must have a penis or at least a 3.5 inch clit
 			//Nieve's capacity is about 130.
 			if ((player.hasCock() || (player.hasVagina() && player.getClitLength() >= 3.5)) && player.lust >= 33) {
-				if (flags[kFLAGS.NIEVE_GENDER] == 2) addButton(1,"Fuck Her",fuckNieve);
+				if (flags[kFLAGS.NIEVE_GENDER] == 2) addButton(1,"Fuck Her",fuckNieve).hint("Engage in a good coitus session with Nieve.");
 			}
 			//Get Fucked by Gurumash
 			//Male Nieve
 			//Any Gender
 			//Nieve's cock is 9x1.5
-			if (flags[kFLAGS.NIEVE_GENDER] == 1 && player.lust >= 33) addButton(1,"Get Fucked",nieveFucksYou);
+			if (flags[kFLAGS.NIEVE_GENDER] == 1 && player.lust >= 33) addButton(1,"Get Fucked",nieveFucksYou).hint("Have Nieve put his dick to a good use and ream you from behind.");
 			addButton(14,"Back",camp.campLoversMenu);
 		}
 
