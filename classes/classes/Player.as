@@ -2282,38 +2282,48 @@ package classes
 		}
 
 		public function minoCumAddiction(raw:Number = 10):void {
-			//Increment minotaur cum intake count
+			//Increment minotaur cum intake count, and reset the counter
 			flags[kFLAGS.MINOTAUR_CUM_INTAKE_COUNT]++;
-			//Fix if variables go out of range.
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] < 0) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] < 0) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = 0;
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] > 120) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = 120;
-
-			//Turn off withdrawal
-			//if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] > 1) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = 1;
-			//Reset counter
 			flags[kFLAGS.TIME_SINCE_LAST_CONSUMED_MINOTAUR_CUM] = 0;
-			//If highly addicted, rises slower
+			
+			//Adjust out-of-range variables
+			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = Math.max(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER],0)
+			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = Math.min(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER],120)
+			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = Math.max(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE],0)
+			
+			//if immune to addiction or disabled, set the state to 1 and tracker to 0, then stop the function before it does stuff
+			if (flags[kFLAGS.ADDICTIONS_ENABLED] <= 0 || hasPerk(PerkLib.MinotaurCumResistance)) {
+				flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = 1;
+				flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
+				return;
+			}
+			
+			//If highly addicted, rises slower.
 			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] >= 60) raw /= 2;
 			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] >= 80) raw /= 2;
 			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] >= 90) raw /= 2;
-			if (hasPerk(PerkLib.MinotaurCumResistance)) raw *= 0;
-			//If in withdrawl, readdiction is potent!
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] == 3) raw += 10;
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] == 2) raw += 5;
-			raw = Math.round(raw * 100)/100;
-			//PUT SOME CAPS ON DAT' SHIT
-			if (raw > 50) raw = 50;
-			if (raw < -50) raw = -50;
-			if (flags[kFLAGS.ADDICTIONS_ENABLED] <= 0) { //Disables addiction if set to OFF.
-				flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = 1;
-				raw = 0; 
+			
+			//If in withdrawl, changes are potent!
+			//This fixes Purified Minotaur Cum causing addiction to increase while in withdrawal
+			if (raw > 0) {
+				if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] == 3) raw += 10;
+				if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] == 2) raw += 5;
 			}
+			if (raw < 0) {
+				if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] == 3) raw -= 10;
+				if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] == 2) raw -= 5;
+			}
+			
+			raw = Math.round(raw * 100)/100; //round to 2 decimal places
+			raw = Math.max(raw, -50) //limit raw to between -50, 50
+			raw = Math.min(raw, 50)
+			
 			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] += raw;
-			//Recheck to make sure shit didn't break
-			if (hasPerk(PerkLib.MinotaurCumResistance)) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = 0; //Never get addicted!
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] > 120) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = 120;
-			if (flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] < 0) flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = 0;
+			
+			//Adjust out-of-range variables again
+			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = Math.max(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER],0)
+			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] = Math.min(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER],120)
+			flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE] = Math.max(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_STATE],0)
 		}
 		
 		public function hasSpells():Boolean
