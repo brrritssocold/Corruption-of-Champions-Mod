@@ -467,12 +467,15 @@ package classes
 			
 			// Mino Cum Addiction
 			if (flags[kFLAGS.MINOTAUR_CUM_INTAKE_COUNT] > 0 || flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] > 0 || player.findPerk(PerkLib.MinotaurCumAddict) >= 0 || player.findPerk(PerkLib.MinotaurCumResistance) >= 0) {
+				//if player is NOT an addict
 				if (player.findPerk(PerkLib.MinotaurCumAddict) < 0)
 					addictStats += "<b>Minotaur Cum:</b> " + Math.round(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] * 10)/10 + "%\n";
+				//if player is immune to addiction
 				else if (player.findPerk(PerkLib.MinotaurCumResistance) >= 0)
 					addictStats += "<b>Minotaur Cum:</b> 0% (Immune)\n";
+				//if player is addicted
 				else
-					addictStats += "<b>Minotaur Cum:</b> 100+%\n";
+					addictStats += "<b>Minotaur Cum:</b> " + Math.round(flags[kFLAGS.MINOTAUR_CUM_ADDICTION_TRACKER] * 10)/10 + " (Addicted)%\n";
 			}
 			
 			if (addictStats != "")
