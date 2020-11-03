@@ -58,7 +58,6 @@ jobs:
 
   # Run sonar scan if a build on master succeeds. This generates project code quality stats and lists possible issues
   sonarcloud:
-    if: ${{ github.ref == 'master' }}
     needs: build
     runs-on: ubuntu-latest
 
