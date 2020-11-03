@@ -5,7 +5,7 @@ name: ActionScript 3 CI
 
 on:
   push:
-    branches: [ master, github_workflow]
+    branches-ignore: [ VanillaPlus ]
   pull_request:
     branches: [ master ]
 
