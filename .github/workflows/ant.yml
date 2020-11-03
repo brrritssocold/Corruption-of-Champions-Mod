@@ -21,28 +21,8 @@ env:
   DISPLAY: ":1"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # different configurations that should be built
-        build: [ release, debug ]
-
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
-    - name: Set up JDK 11
-      uses: actions/setup-java@v1
-      with:
-        java-version: 11
-
-    - name: Update CoC version in sonar configuration
-      run: devTools/ci/update-sonar-version.sh
-
   # Run sonar scan if a build on master succeeds. This generates project code quality stats and lists possible issues
   sonarcloud:
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -50,6 +30,9 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+
+    - name: Update CoC version in sonar configuration
+      run: devTools/ci/update-sonar-version.sh
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
