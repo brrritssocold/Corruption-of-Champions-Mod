@@ -70,6 +70,9 @@ jobs:
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
+      with:
+        args: >
+          -Dsonar.organization=${{ secrets.SONAR_ORG }}
       env:
         # provided by Github
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
