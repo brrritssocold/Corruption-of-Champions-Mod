@@ -71,10 +71,13 @@ jobs:
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       with:
+        # The value for SONAR_ORG can be found in sonarcloud > my organisations > copy the key for the org you wish to use
+        # This needs to be set in the Github repository. Repository settings > secrets > new secret
         args: >
           -Dsonar.organization=${{ secrets.SONAR_ORG }}
       env:
-        # provided by Github
+        # Provided by Github
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # This token can be created on sonarcloud My Account > Security tab > Generate
         # This needs to be set in the Github repository. Repository settings > secrets > new secret
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
