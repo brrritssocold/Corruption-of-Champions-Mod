@@ -37,3 +37,6 @@ jobs:
 
     - name: Build and run tests
       run: ant test-release
+      env:
+        FLEX_HOME: "build-dep/bin/flex/"
+        DISPLAY: ":1"
