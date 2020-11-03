@@ -17,6 +17,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # different configurations that should be built
+        build: [ release, debug ]
 
     steps:
     - uses: actions/checkout@v2
@@ -40,4 +44,4 @@ jobs:
       run: Xvnc :1 &
 
     - name: Build and run tests
-      run: ant test-release
+      run: ant test-${{ matrix.build }}
