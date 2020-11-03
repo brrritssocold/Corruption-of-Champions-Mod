@@ -10,6 +10,10 @@ on:
     branches: [ master ]
 
 jobs:
+  env:
+    FLEX_HOME: "build-dep/bin/flex/"
+    DISPLAY: ":1"
+
   build:
 
     runs-on: ubuntu-latest
@@ -37,6 +41,3 @@ jobs:
 
     - name: Build and run tests
       run: ant test-release
-      env:
-        FLEX_HOME: "build-dep/bin/flex/"
-        DISPLAY: ":1"
