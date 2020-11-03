@@ -53,9 +53,6 @@ jobs:
     - name: Build and run tests
       run: ant test-${{ matrix.build }}
 
-    - name: Update CoC version in sonar configuration
-      run: devTools/ci/update-sonar-version.sh
-
   # Run sonar scan if a build on master succeeds. This generates project code quality stats and lists possible issues
   sonarcloud:
     if: ${{ github.ref == 'master' }}
@@ -67,6 +64,9 @@ jobs:
       with:
         # Disabling shallow clone is recommended for improving relevancy of reporting
         fetch-depth: 0
+
+    - name: Update CoC version in sonar configuration
+      run: devTools/ci/update-sonar-version.sh
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
