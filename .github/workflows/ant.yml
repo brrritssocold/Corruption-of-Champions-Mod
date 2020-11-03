@@ -14,13 +14,13 @@ on:
   pull_request:
     branches: [ master ]
 
-jobs:
-  env:
-    # tell the build file where to find the flex SDK
-    FLEX_HOME: "build-dep/bin/flex/"
-    # this is to trick the flash player into thinking it is running on a desktop
-    DISPLAY: ":1"
+env:
+  # tell the build file where to find the flex SDK
+  FLEX_HOME: "build-dep/bin/flex/"
+  # this is to trick the flash player into thinking it is running on a desktop
+  DISPLAY: ":1"
 
+jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
