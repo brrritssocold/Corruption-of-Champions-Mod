@@ -1,0 +1,37 @@
+# This workflow will build a Java project with Ant
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-ant
+
+name: Java CI
+
+on:
+  push:
+    branches: [ master, github_workflow]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+
+    # install VNC and xfce4 so we have a desktop, as the flash player requires one:
+    - name: Install desktop
+      run: sudo apt-get install vnc4server xfce4 ant ant-optional -y
+
+    # So flexunit can find the player and the ant build file does not have to be modified  
+    - name: Copy flashplayer to correct location
+      run: sudo cp build-dep/bin/flashplayer /usr/local/bin/gflashplayer
+
+    # start a VNC session, this will be the desktop for tests
+    - name: Start VNC
+      run: Xvnc :1 &
+
+    - name: Build and run tests
+      run: ant test-release
