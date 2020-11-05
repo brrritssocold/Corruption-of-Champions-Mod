@@ -69,6 +69,7 @@ jobs:
       run: devTools/ci/update-sonar-version.sh
 
     - name: SonarCloud Scan
+      continue-on-error: true
       uses: sonarsource/sonarcloud-github-action@master
       with:
         # The value for SONAR_ORG can be found in sonarcloud > my organisations > copy the key for the org you wish to use
